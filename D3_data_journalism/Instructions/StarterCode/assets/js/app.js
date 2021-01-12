@@ -63,6 +63,42 @@ d3.csv("assets/data/data.csv").then(function(stateData){
     var bottomAxis = d3.axisBottom(xLinearScale);
     var leftAxis = d3.axisLeft(yLinearScale);
 
+    //Append the axes to the chartGroup
+
+    //Add bottomAxis
+    chartGroup.append("g")
+        .attr("transform", `translate(0, ${chartHeight})`)
+        .call(bottomAxis);
+    
+    chartGroup.append("g")
+        .call(leftAxis);
+
+    //Append circles
+    var circlesGroup = chartGroup.selectAll("circle")
+        .data(stateData)
+        .enter()
+        .append("circle")
+        .attr("cx", d =>  xLinearScale(d.poverty))
+        .attr("cy", d =>  xLinearScale(d.healthcare))
+        .attr("r", "10")
+        .attr("fill", "gold")
+
+    // //Append text
+    // svg.selectAll()
+    // chartGroup.append("text").text(function(d){
+    //     return d.abbr;
+    // })
+    // .attr("x", function (d) {
+    //     return x(d.x);
+    // })
+    // .attr("y", function (d) {
+    //     return y(d.y);
+    // });
+        
+
+
+
+
 }).catch(function(error) {
   console.log(error);
 
