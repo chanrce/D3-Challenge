@@ -83,10 +83,22 @@ d3.csv("assets/data/data.csv").then(function(stateData){
         .attr("r", "10")
         .attr("fill", "gold")
 
-    // //Append text
-    // svg.selectAll()
-    // chartGroup.append("text").text(function(d){
+    // //Append abbreviations to each circle
+    // circlesGroup.append("text").text(function(d){
     //     return d.abbr;
+    // })
+    // .attr("dx", function(d){
+    //     return xLinearScale(d.poverty);
+    // })
+    // .attr("dy", function(d){
+    //     return yLinearScale(d.healthcare);
+
+    // });
+
+    //FROM STACK OVERFLOW:
+
+    // gdots.append("text").text(function(d){
+    //     return d.name;
     // })
     // .attr("x", function (d) {
     //     return x(d.x);
@@ -94,7 +106,9 @@ d3.csv("assets/data/data.csv").then(function(stateData){
     // .attr("y", function (d) {
     //     return y(d.y);
     // });
-        
+
+    
+
 
 
 
