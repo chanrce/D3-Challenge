@@ -18,7 +18,7 @@ var chartHeight = svgHeight - chartMargin.top - chartMargin.bottom;
 
 // Select body, append SVG area to it, and set the dimensions
 var svg = d3
-  .select("body")
+  .select("#scatter")
   .append("svg")
   .attr("height", svgHeight)
   .attr("width", svgWidth);
@@ -51,6 +51,17 @@ d3.csv("assets/data/data.csv").then(function(stateData){
         console.log("Poverty", data.poverty)
     });
 
+    //Create Scales
+    var xLinearScale = d3.scaleLinear()
+        .domain(d3.extent(stateData, d => d.poverty))
+        .range([0, chartWidth]);
+    var yLinearScale = d3.scaleLinear()
+        .domain([0, d3.extent(stateData, d => d.healthcare)])
+        .range([chartHeight, 0]);
+
+    //Create Axes
+    var bottomAxis = d3.axisBottom(xLinearScale);
+    var leftAxis = d3.axisLeft(yLinearScale);
 
 }).catch(function(error) {
   console.log(error);
