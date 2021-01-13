@@ -1,15 +1,13 @@
-// @TODO: YOUR CODE HERE!
-
 // Define SVG area dimensions
-var svgWidth = 960;
-var svgHeight = 660;
+var svgWidth = 1000;
+var svgHeight = 550;
 
 // Define the chart's margins as an object
 var chartMargin = {
-    top: 30,
-    right: 30,
-    bottom: 30,
-    left: 30
+    top: 70,
+    right: 40,
+    bottom: 150,
+    left: 100
   };
 
 // Define dimensions of the chart area
@@ -28,6 +26,13 @@ var svg = d3
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${chartMargin.left}, ${chartMargin.top})`);
 
+  // Initial Params
+var chosenXAxis = "poverty";
+var chosenYAxis = "healthcare";
+
+//Labels for axes
+var xAxisLabel = "Poverty";
+var yAxisLabel = "Healthcare";
 
 //Read csv
 d3.csv("assets/data/data.csv").then(function(stateData){
@@ -56,7 +61,7 @@ d3.csv("assets/data/data.csv").then(function(stateData){
         .domain(d3.extent(stateData, d => d.poverty))
         .range([0, chartWidth]);
     var yLinearScale = d3.scaleLinear()
-        .domain([0, d3.extent(stateData, d => d.healthcare)])
+        .domain([0, d3.max(stateData, d => d.healthcare)])
         .range([chartHeight, 0]);
 
     //Create Axes
@@ -79,21 +84,21 @@ d3.csv("assets/data/data.csv").then(function(stateData){
         .enter()
         .append("circle")
         .attr("cx", d =>  xLinearScale(d.poverty))
-        .attr("cy", d =>  xLinearScale(d.healthcare))
+        .attr("cy", d =>  yLinearScale(d.healthcare))
         .attr("r", "10")
         .attr("fill", "gold")
 
-    // //Append abbreviations to each circle
-    // circlesGroup.append("text").text(function(d){
-    //     return d.abbr;
-    // })
-    // .attr("dx", function(d){
-    //     return xLinearScale(d.poverty);
-    // })
-    // .attr("dy", function(d){
-    //     return yLinearScale(d.healthcare);
+    //Append abbreviations to each circle
+    circlesGroup.append("text").text(function(d){
+        return d.abbr;
+    })
+    .attr("x", function(d){
+        return xLinearScale(d.poverty);
+    })
+    .attr("y", function(d){
+        return yLinearScale(d.healthcare);
 
-    // });
+    });
 
     //FROM STACK OVERFLOW:
 
