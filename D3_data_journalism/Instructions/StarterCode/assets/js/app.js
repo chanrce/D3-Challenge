@@ -89,28 +89,20 @@ d3.csv("assets/data/data.csv").then(function(stateData){
         .attr("fill", "gold")
 
     //Append abbreviations to each circle
-    circlesGroup.append("text").text(function(d){
-        return d.abbr;
-    })
-    .attr("x", function(d){
-        return xLinearScale(d.poverty);
-    })
-    .attr("y", function(d){
-        return yLinearScale(d.healthcare);
+        //Null because we are not plotting
+        chartGroup.selectAll("null")
+        .data(stateData)
+        .enter()
+        .append("text")
+        .text(function(d){
+            return d.abbr;
+        })
+        .attr("x", d =>  xLinearScale(d.poverty))
+        .attr("y", d =>  yLinearScale(d.healthcare))
+        .attr("text-anchor", "middle")
+        .attr("font-size", 10)
 
-    });
-
-    //FROM STACK OVERFLOW:
-
-    // gdots.append("text").text(function(d){
-    //     return d.name;
-    // })
-    // .attr("x", function (d) {
-    //     return x(d.x);
-    // })
-    // .attr("y", function (d) {
-    //     return y(d.y);
-    // });
+    
 
     
 
