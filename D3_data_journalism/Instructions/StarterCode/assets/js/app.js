@@ -58,7 +58,7 @@ d3.csv("assets/data/data.csv").then(function(stateData){
 
     //Create Scales
     var xLinearScale = d3.scaleLinear()
-        .domain(d3.extent(stateData, d => d.poverty))
+        .domain([8, d3.max(stateData, d => d.poverty)])
         .range([0, chartWidth]);
     var yLinearScale = d3.scaleLinear()
         .domain([0, d3.max(stateData, d => d.healthcare)])
@@ -85,12 +85,11 @@ d3.csv("assets/data/data.csv").then(function(stateData){
         .append("circle")
         .attr("cx", d =>  xLinearScale(d.poverty))
         .attr("cy", d =>  yLinearScale(d.healthcare))
-        .attr("r", "10")
-        .attr("fill", "gold")
+        .attr("r", "13")
+        .attr("fill", "#555FD6")
 
     //Append abbreviations to each circle
-        //Null because we are not plotting
-        chartGroup.selectAll("null")
+    chartGroup.selectAll("null")
         .data(stateData)
         .enter()
         .append("text")
@@ -101,18 +100,30 @@ d3.csv("assets/data/data.csv").then(function(stateData){
         .attr("y", d =>  yLinearScale(d.healthcare))
         .attr("text-anchor", "middle")
         .attr("font-size", 10)
-
-    
-
-    
+        .attr("fill", "white")
 
 
+    //Labeling the axes
 
+    //Y axis
+
+    chartGroup.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - chartMargin.left + 40)
+        .attr("x", 0 - (chartHeight / 2))
+        .attr("dy", "1em")
+        .attr("class", "axisText")
+        .text("Healthcare");
+
+    //X axis
+
+    chartGroup.append("text")
+        .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + chartMargin.top})`)
+        .attr("class", "axisText")
+        .text("Poverty");
 
 
 }).catch(function(error) {
   console.log(error);
-
-
 
 })
