@@ -41,11 +41,6 @@ d3.csv("assets/data/data.csv").then(function(stateData){
     
     //Variables needed: abbr, healthcare, poverty
 
-    //Abbreviation
-    // log a list of names
-    var abbr = stateData.map(abbrdata => abbrdata.abbr);
-    console.log("Abbreviations", abbr);
-
     // Cast each healthcare and poverty value in stateData as a number using the unary + operator
     stateData.forEach(function(data) {
         //Healthcare
