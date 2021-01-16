@@ -1,9 +1,9 @@
 # D3-Challenge
 ## Project Summary
 
-* The goal of this project was to create scatter plot out of a Census dataset containing health and demographic information. The chosen variables for this project were healthcare and poverty.
-  * Healthcare: Percent that lack healthcare
-  * Poverty: Percent that are in poverty
+* The goal of this project was to create scatter plot out of a Census dataset containing health and demographic information. The chosen variables for this project were healthcare and poverty. The data points were broken down by state. Below is a description of each variable:
+  * Healthcare: Percent who lack healthcare
+  * Poverty: Percent who are in poverty
 
 ## Technologies Used
 
