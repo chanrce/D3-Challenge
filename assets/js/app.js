@@ -113,14 +113,14 @@ d3.csv("assets/data/data.csv").then(function(stateData){
         .attr("x", 0 - (chartHeight / 2))
         .attr("dy", "1em")
         .attr("class", "axisText")
-        .text("Healthcare");
+        .text("Lacks Healthcare (%)");
 
     //X axis
 
     chartGroup.append("text")
         .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + 5 + chartMargin.top})`)
         .attr("class", "axisText")
-        .text("Poverty");
+        .text("In Poverty (%)");
 
 
 }).catch(function(error) {
