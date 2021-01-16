@@ -1,12 +1,12 @@
 // Define SVG area dimensions
 var svgWidth = 1000;
-var svgHeight = 550;
+var svgHeight = 700;
 
 // Define the chart's margins as an object
 var chartMargin = {
-    top: 70,
+    top: 45,
     right: 40,
-    bottom: 150,
+    bottom: 90,
     left: 100
   };
 
@@ -58,10 +58,10 @@ d3.csv("assets/data/data.csv").then(function(stateData){
 
     //Create Scales
     var xLinearScale = d3.scaleLinear()
-        .domain([8, d3.max(stateData, d => d.poverty)])
+        .domain([8, d3.max(stateData, d => d.poverty)+2])
         .range([0, chartWidth]);
     var yLinearScale = d3.scaleLinear()
-        .domain([0, d3.max(stateData, d => d.healthcare)])
+        .domain([3, d3.max(stateData, d => d.healthcare)+2])
         .range([chartHeight, 0]);
 
     //Create Axes
@@ -118,7 +118,7 @@ d3.csv("assets/data/data.csv").then(function(stateData){
     //X axis
 
     chartGroup.append("text")
-        .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + chartMargin.top})`)
+        .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + 5 + chartMargin.top})`)
         .attr("class", "axisText")
         .text("Poverty");
 
